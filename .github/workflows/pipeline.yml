@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies
-        run: npm run install:all
+        run: |
+          npm run install:all
+          npm install @rollup/rollup-linux-x64-gnu --no-save
       - name: Check style
         run: npm run lint
       - name: Test backend
