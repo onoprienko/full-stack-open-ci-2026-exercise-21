@@ -51,7 +51,7 @@ describe('Blog app', () => {
       await expect(page.getByRole('heading', { name: 'blogs' })).toBeVisible();
       await createNewBlog({ ...testBlogData, page });
       await expect(
-        page.getByRole('link', { name: 'test-title' }),
+        page.getByRole('link', { name: 'test-title', exact: true }),
       ).toBeVisible();
     });
 
@@ -60,7 +60,7 @@ describe('Blog app', () => {
         page.getByText('message: a new blog "test-title" added'),
       ).toBeVisible();
       await expect(
-        page.getByRole('link', { name: 'test-title' }),
+        page.getByRole('link', { name: 'test-title', exact: true }),
       ).toBeVisible();
     });
 
@@ -85,9 +85,9 @@ describe('Blog app', () => {
     test('blog can NOT be deleted by wrong user', async ({ page }) => {
       await page.getByRole('button', { name: 'logout' }).click();
       await login({ ...testUserData2, page });
-      await page.getByRole('link', { name: 'test-title' }).click();
+      await page.getByRole('link', { name: 'test-title', exact: true }).click();
       await expect(
-        page.getByRole('heading', { name: 'test-title' }),
+        page.getByRole('heading', { name: 'test-title', exact: true }),
       ).toBeVisible();
       await expect(page.getByRole('button', { name: 'remove' })).toHaveCount(0);
     });
@@ -96,7 +96,7 @@ describe('Blog app', () => {
       await createNewBlog({ ...testBlogData2, page });
 
       await expect(
-        await page.getByRole('link', { name: 'test-title2' }),
+        await page.getByRole('link', { name: 'test-title2', exact: true }),
       ).toBeVisible();
 
       await page.getByRole('link', { name: /^test-title2$/i }).click();

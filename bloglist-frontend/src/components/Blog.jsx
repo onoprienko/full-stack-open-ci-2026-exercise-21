@@ -8,6 +8,7 @@ const Blog = ({ blog, blogs, setBlogs, user, likeButtonHandler }) => {
 
   const navigate = useNavigate();
   const showBlogToggle = () => setShowBlog(!showBlog);
+  console.log(showBlogToggle);
 
   const blogRemove = async () => {
     if (window.confirm(`Remove blog "${blog.title}" by ${blog.author}`)) {
